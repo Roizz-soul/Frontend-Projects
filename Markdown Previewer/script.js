@@ -2,10 +2,10 @@ import React from "https://esm.sh/react";
 import ReactDOM from "https://esm.sh/react-dom";
 import { Provider, connect } from "https://esm.sh/react-redux";
 import {
-createStore,
-combineReducers,
-applyMiddleware } from
-"https://esm.sh/redux";
+  createStore,
+  combineReducers,
+  applyMiddleware
+} from "https://esm.sh/redux";
 import { marked } from "https://cdnjs.cloudflare.com/ajax/libs/marked/13.0.2/lib/marked.esm.js";
 
 // Markup parser settings
@@ -13,8 +13,8 @@ marked.use({
   //async: true,
   breaks: true,
   pedantic: false,
-  gfm: true });
-
+  gfm: true
+});
 
 const mark = `# Welcome to my React Markdown Previewer!
 
@@ -73,25 +73,25 @@ class EditorFix extends React.Component {
   }
 
   render() {
-    return /*#__PURE__*/(
-      React.createElement("div", { class: "resizable-container" }, /*#__PURE__*/
-      React.createElement("div", { id: "editor-title" }, "Editor", /*#__PURE__*/
-
-      React.createElement("span", null, /*#__PURE__*/
-      React.createElement("i", { class: "fa-regular fa-window-maximize" }))), /*#__PURE__*/
-
-
-      React.createElement("textarea", {
-        class: "resizable-content",
-        id: "editor",
-        onChange: this.handleChange,
-        value: this.props.text }), /*#__PURE__*/
-
-      React.createElement("div", { class: "resizable-handle" })));
-
-
-  }}
-
+    return (
+      <div class="resizable-container">
+        <div id="editor-title">
+          Editor
+          <span>
+            <i class="fa-regular fa-window-maximize"></i>
+          </span>
+        </div>
+        <textarea
+          class="resizable-content"
+          id="editor"
+          onChange={this.handleChange}
+          value={this.props.text}
+        ></textarea>
+        <div class="resizable-handle"></div>
+      </div>
+    );
+  }
+}
 
 class PreviewFix extends React.Component {
   constructor(props) {
@@ -99,55 +99,55 @@ class PreviewFix extends React.Component {
   }
 
   render() {
-    return /*#__PURE__*/(
-      React.createElement("div", { class: "resizable-container2" }, /*#__PURE__*/
-      React.createElement("div", { id: "preview-title" }, "Preview", /*#__PURE__*/
-
-      React.createElement("span", null, /*#__PURE__*/
-      React.createElement("i", { class: "fa-regular fa-window-maximize" }))), /*#__PURE__*/
-
-
-      React.createElement("div", {
-        class: "resizable-content",
-        id: "preview",
-        dangerouslySetInnerHTML: { __html: marked.parse(this.props.text) } })));
-
-
-
-  }}
-
+    return (
+      <div class="resizable-container2">
+        <div id="preview-title">
+          Preview
+          <span>
+            <i class="fa-regular fa-window-maximize"></i>
+          </span>
+        </div>
+        <div
+          class="resizable-content"
+          id="preview"
+          dangerouslySetInnerHTML={{ __html: marked.parse(this.props.text) }}
+        ></div>
+      </div>
+    );
+  }
+}
 class Presentational extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      markup: mark };
-
+      markup: mark
+    };
 
     this.updateMarkup = this.updateMarkup.bind(this);
   }
 
   updateMarkup(message) {
     this.setState({
-      markup: message });
-
+      markup: message
+    });
   }
 
   render() {
-    return /*#__PURE__*/(
-      React.createElement("div", null, /*#__PURE__*/
-      React.createElement("p", { class: "title" }, /*#__PURE__*/
-      React.createElement("i", { class: "fa-solid fa-bars", id: "bar" }), "My Editor"), /*#__PURE__*/
+    return (
+      <div>
+        <p class="title">
+          <i class="fa-solid fa-bars" id="bar"></i>My Editor
+        </p>
+        <div class="container-fluid" id="container">
+          <EditorFix text={this.state.markup} func={this.updateMarkup} />
+          <PreviewFix text={this.state.markup} />
+        </div>
+      </div>
+    );
+  }
+}
 
-      React.createElement("div", { class: "container-fluid", id: "container" }, /*#__PURE__*/
-      React.createElement(EditorFix, { text: this.state.markup, func: this.updateMarkup }), /*#__PURE__*/
-      React.createElement(PreviewFix, { text: this.state.markup }))));
-
-
-
-  }}
-
-
-ReactDOM.render( /*#__PURE__*/React.createElement(Presentational, null), document.getElementById("wrapper"));
+ReactDOM.render(<Presentational />, document.getElementById("wrapper"));
 
 //Code for resizing both Editor and Preview boxes
 const resizable = document.querySelector(".resizable-container");

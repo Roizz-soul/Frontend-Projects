@@ -2,10 +2,10 @@ import React from "https://esm.sh/react";
 import ReactDOM from "https://esm.sh/react-dom";
 import { Provider, connect } from "https://esm.sh/react-redux";
 import {
-createStore,
-combineReducers,
-applyMiddleware } from
-"https://esm.sh/redux";
+  createStore,
+  combineReducers,
+  applyMiddleware
+} from "https://esm.sh/redux";
 
 //Variables
 const CALC = "calc"; //For digits
@@ -19,93 +19,93 @@ let ans = 0; //Final Answer
 
 //List of Butons
 const btns = [
-{
-  text: "AC",
-  id: "clear",
-  class: CLEAR },
+  {
+    text: "AC",
+    id: "clear",
+    class: CLEAR
+  },
+  {
+    text: "/",
+    id: "divide",
+    class: SIGN
+  },
+  {
+    text: "*",
+    id: "multiply",
+    class: SIGN
+  },
+  {
+    text: "7",
+    id: "seven",
+    class: "calc"
+  },
+  {
+    text: "8",
+    id: "eight",
+    class: "calc"
+  },
+  {
+    text: "9",
+    id: "nine",
+    class: "calc"
+  },
+  {
+    text: "-",
+    id: "subtract",
+    class: SIGN
+  },
+  {
+    text: "4",
+    id: "four",
+    class: "calc"
+  },
+  {
+    text: "5",
+    id: "five",
+    class: "calc"
+  },
+  {
+    text: "6",
+    id: "six",
+    class: "calc"
+  },
+  {
+    text: "+",
+    id: "add",
+    class: SIGN
+  },
+  {
+    text: "1",
+    id: "one",
+    class: "calc"
+  },
+  {
+    text: "2",
+    id: "two",
+    class: "calc"
+  },
+  {
+    text: "3",
+    id: "three",
+    class: "calc"
+  },
 
-{
-  text: "/",
-  id: "divide",
-  class: SIGN },
-
-{
-  text: "*",
-  id: "multiply",
-  class: SIGN },
-
-{
-  text: "7",
-  id: "seven",
-  class: "calc" },
-
-{
-  text: "8",
-  id: "eight",
-  class: "calc" },
-
-{
-  text: "9",
-  id: "nine",
-  class: "calc" },
-
-{
-  text: "-",
-  id: "subtract",
-  class: SIGN },
-
-{
-  text: "4",
-  id: "four",
-  class: "calc" },
-
-{
-  text: "5",
-  id: "five",
-  class: "calc" },
-
-{
-  text: "6",
-  id: "six",
-  class: "calc" },
-
-{
-  text: "+",
-  id: "add",
-  class: SIGN },
-
-{
-  text: "1",
-  id: "one",
-  class: "calc" },
-
-{
-  text: "2",
-  id: "two",
-  class: "calc" },
-
-{
-  text: "3",
-  id: "three",
-  class: "calc" },
-
-
-{
-  text: "0",
-  id: "zero",
-  class: "calc" },
-
-{
-  text: ".",
-  id: "decimal",
-  class: "decimal" },
-
-{
-  text: "=",
-  id: "equals",
-  class: "equals" }];
-
-
+  {
+    text: "0",
+    id: "zero",
+    class: "calc"
+  },
+  {
+    text: ".",
+    id: "decimal",
+    class: "decimal"
+  },
+  {
+    text: "=",
+    id: "equals",
+    class: "equals"
+  }
+];
 
 //Function to handle digit input, called in reducer
 const handleCalc = (Sinput, Ainput) => {
@@ -115,11 +115,11 @@ const handleCalc = (Sinput, Ainput) => {
     return { input: Ainput };
   }
   if (
-  Sinput[0] === "+" ||
-  Sinput[0] === "*" ||
-  Sinput[0] === "-" ||
-  Sinput[0] === "/")
-  {
+    Sinput[0] === "+" ||
+    Sinput[0] === "*" ||
+    Sinput[0] === "-" ||
+    Sinput[0] === "/"
+  ) {
     calculation += Ainput;
     return { input: Ainput };
   }
@@ -138,9 +138,9 @@ const handleSign = (Sinput, Ainput) => {
   }
 
   if (
-  calculation.length >= 7 &&
-  ["+", "-", "*", "/"].includes(calculation[calculation.length - 5]))
-  {
+    calculation.length >= 7 &&
+    ["+", "-", "*", "/"].includes(calculation[calculation.length - 5])
+  ) {
     if (Ainput === "-") {
       calculation = calculation.slice(0, calculation.length - 2) + Ainput + " ";
       return { input: Ainput };
@@ -154,11 +154,11 @@ const handleSign = (Sinput, Ainput) => {
     calculation += " " + Ainput + " ";
     return { input: Ainput };
   } else if (
-  Sinput === "+" ||
-  Sinput === "-" ||
-  Sinput === "/" ||
-  Sinput === "*")
-  {
+    Sinput === "+" ||
+    Sinput === "-" ||
+    Sinput === "/" ||
+    Sinput === "*"
+  ) {
     calculation = calculation.slice(0, calculation.length - 2) + Ainput + " ";
     return { input: Ainput };
   }
@@ -187,11 +187,11 @@ const handleDecimal = (Sinput, Ainput, Mstate) => {
   }
 
   if (
-  Sinput[0] === "+" ||
-  Sinput[0] === "*" ||
-  Sinput[0] === "-" ||
-  Sinput[0] === "/")
-  {
+    Sinput[0] === "+" ||
+    Sinput[0] === "*" ||
+    Sinput[0] === "-" ||
+    Sinput[0] === "/"
+  ) {
     calculation += Ainput === "." ? "0" + Ainput : Ainput;
     return { input: Ainput === "." ? "0" + Ainput : Ainput };
   }
@@ -202,16 +202,16 @@ const handleDecimal = (Sinput, Ainput, Mstate) => {
     calculation += Sinput[0] === "." || Sinput === "" ? "0" + Ainput : Ainput;
     return {
       input:
-      Sinput + (Sinput[0] === "." || Sinput === "" ? "0" + Ainput : Ainput) };
-
+        Sinput + (Sinput[0] === "." || Sinput === "" ? "0" + Ainput : Ainput)
+    };
   }
 };
 
 //Action
 const inputFeed = (input, type) => ({
   type,
-  input });
-
+  input
+});
 
 //Reducer
 const calcReducer = (state = { input: "" }, action) => {
@@ -240,8 +240,8 @@ const calcReducer = (state = { input: "" }, action) => {
       return { input: ans };
 
     default:
-      return state;}
-
+      return state;
+  }
 };
 
 //Store
@@ -256,14 +256,14 @@ class Screen extends React.Component {
   }
 
   render() {
-    return /*#__PURE__*/(
-      React.createElement("div", { id: "screen" }, /*#__PURE__*/
-      React.createElement("div", { id: "workings" }, calculation), /*#__PURE__*/
-      React.createElement("div", { id: "display" }, this.props.input == "" ? 0 : this.props.input)));
-
-
-  }}
-
+    return (
+      <div id="screen">
+        <div id="workings">{calculation}</div>
+        <div id="display">{this.props.input == "" ? 0 : this.props.input}</div>
+      </div>
+    );
+  }
+}
 
 //component for the Buttons
 class ButtonPads extends React.Component {
@@ -277,22 +277,22 @@ class ButtonPads extends React.Component {
   }
 
   render() {
-    return /*#__PURE__*/(
-      React.createElement("div", { id: "buttonpads" },
-      btns.map((el, index) => /*#__PURE__*/
-      React.createElement("button", {
-        id: el.id,
-        key: index,
-        onClick: this.handleClick,
-        className: el.class },
-
-      el.text))));
-
-
-
-
-  }}
-
+    return (
+      <div id="buttonpads">
+        {btns.map((el, index) => (
+          <button
+            id={el.id}
+            key={index}
+            onClick={this.handleClick}
+            className={el.class}
+          >
+            {el.text}
+          </button>
+        ))}
+      </div>
+    );
+  }
+}
 
 //Presantational react component, this is the main/root component
 class Presentational extends React.Component {
@@ -301,26 +301,26 @@ class Presentational extends React.Component {
   }
 
   render() {
-    return /*#__PURE__*/(
-      React.createElement("div", { id: "calculator" }, /*#__PURE__*/
-      React.createElement(Screen, { input: this.props.input }), /*#__PURE__*/
-      React.createElement(ButtonPads, { inputNum: this.props.inputNum })));
-
-
-  }}
-
+    return (
+      <div id="calculator">
+        <Screen input={this.props.input} />
+        <ButtonPads inputNum={this.props.inputNum} />
+      </div>
+    );
+  }
+}
 
 // React-Redux:
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return { input: state.input };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     inputNum: (input, type) => {
       dispatch(inputFeed(input, type));
-    } };
-
+    }
+  };
 };
 
 // Define the Container component here:(Presentational is the react component)
@@ -328,12 +328,12 @@ const Container = connect(mapStateToProps, mapDispatchToProps)(Presentational);
 
 class AppWrapper extends React.Component {
   render() {
-    return /*#__PURE__*/(
-      React.createElement(Provider, { store: store }, /*#__PURE__*/
-      React.createElement(Container, null)));
+    return (
+      <Provider store={store}>
+        <Container />
+      </Provider>
+    );
+  }
+}
 
-
-  }}
-
-
-ReactDOM.render( /*#__PURE__*/React.createElement(AppWrapper, null), document.getElementById("wrapper"));
+ReactDOM.render(<AppWrapper />, document.getElementById("wrapper"));

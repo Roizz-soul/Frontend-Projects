@@ -2,10 +2,10 @@ import React from "https://esm.sh/react";
 import ReactDOM from "https://esm.sh/react-dom";
 import { Provider, connect } from "https://esm.sh/react-redux";
 import {
-createStore,
-combineReducers,
-applyMiddleware } from
-"https://esm.sh/redux";
+  createStore,
+  combineReducers,
+  applyMiddleware
+} from "https://esm.sh/redux";
 
 let ticking = false;
 
@@ -20,7 +20,7 @@ function startTimer(duration, display) {
         return;
       }
       if (sec < 0 && min === 0) {
-        const check = document.getElementById("timer-label").textContent;
+        const check = document.getElementById("timer-label").textContent
         if (check === "Session") {
           document.getElementById("timer-label").textContent = "Break";
           min = Number(document.getElementById("break-length").textContent);
@@ -32,13 +32,13 @@ function startTimer(duration, display) {
           sec = Number("00");
           document.getElementById("beep").play();
         }
-
+        
       } else if (sec < 0) {
         min--;
         sec = 59;
       }
       display.textContent =
-      (min < 10 ? "0" + min : min) + ":" + (sec < 10 ? "0" + sec : sec);
+        (min < 10 ? "0" + min : min) + ":" + (sec < 10 ? "0" + sec : sec);
     }, 1000);
   }
 }
@@ -76,7 +76,7 @@ class Settings extends React.Component {
       const dig = document.getElementById("session-length").textContent;
       if (Number(dig) < 60) {
         document.getElementById("time-left").textContent =
-        Number(dig) + 1 + ":00";
+          Number(dig) + 1 + ":00";
         document.getElementById("session-length").textContent = Number(dig) + 1;
       }
     }
@@ -87,43 +87,43 @@ class Settings extends React.Component {
       const fig = document.getElementById("session-length").textContent;
       if (Number(fig) > 1) {
         document.getElementById("time-left").textContent =
-        Number(fig) - 1 + ":00";
+          Number(fig) - 1 + ":00";
         document.getElementById("session-length").textContent = Number(fig) - 1;
       }
     }
   }
 
   render() {
-    return /*#__PURE__*/(
-      React.createElement("div", { id: "settings" }, /*#__PURE__*/
-      React.createElement("div", { class: "break" }, /*#__PURE__*/
-      React.createElement("p", { id: "break-label" }, "Break Length"), /*#__PURE__*/
-      React.createElement("div", null, /*#__PURE__*/
-      React.createElement("span", { id: "break-decrement", onClick: this.handleClickDecB }, /*#__PURE__*/
-      React.createElement("i", { class: "fa-solid fa-angle-down" })), /*#__PURE__*/
-
-      React.createElement("span", { id: "break-length" }, "5"), /*#__PURE__*/
-      React.createElement("span", { id: "break-increment", onClick: this.handleClickIncB }, /*#__PURE__*/
-      React.createElement("i", { class: "fa-solid fa-angle-up" })))), /*#__PURE__*/
-
-
-
-      React.createElement("div", { class: "session" }, /*#__PURE__*/
-      React.createElement("p", { id: "session-label" }, "Session Length"), /*#__PURE__*/
-      React.createElement("div", null, /*#__PURE__*/
-      React.createElement("span", { id: "session-decrement", onClick: this.handleClickDecS }, /*#__PURE__*/
-      React.createElement("i", { class: "fa-solid fa-angle-down" })), /*#__PURE__*/
-
-      React.createElement("span", { id: "session-length" }, "25"), /*#__PURE__*/
-      React.createElement("span", { id: "session-increment", onClick: this.handleClickIncS }, /*#__PURE__*/
-      React.createElement("i", { class: "fa-solid fa-angle-up" }))))));
-
-
-
-
-
-  }}
-
+    return (
+      <div id="settings">
+        <div class="break">
+          <p id="break-label">Break Length</p>
+          <div>
+            <span id="break-decrement" onClick={this.handleClickDecB}>
+              <i class="fa-solid fa-angle-down"></i>
+            </span>
+            <span id="break-length">5</span>
+            <span id="break-increment" onClick={this.handleClickIncB}>
+              <i class="fa-solid fa-angle-up"></i>
+            </span>
+          </div>
+        </div>
+        <div class="session">
+          <p id="session-label">Session Length</p>
+          <div>
+            <span id="session-decrement" onClick={this.handleClickDecS}>
+              <i class="fa-solid fa-angle-down"></i>
+            </span>
+            <span id="session-length">25</span>
+            <span id="session-increment" onClick={this.handleClickIncS}>
+              <i class="fa-solid fa-angle-up"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
 
 class Timer extends React.Component {
   constructor(props) {
@@ -138,9 +138,9 @@ class Timer extends React.Component {
     } else {
       ticking = true;
       startTimer(
-      document.getElementById("time-left").textContent,
-      document.getElementById("time-left"));
-
+        document.getElementById("time-left").textContent,
+        document.getElementById("time-left")
+      );
     }
   }
 
@@ -155,24 +155,24 @@ class Timer extends React.Component {
   }
 
   render() {
-    return /*#__PURE__*/(
-      React.createElement("div", { id: "timer" }, /*#__PURE__*/
-      React.createElement("div", { id: "circle", class: "well" }, /*#__PURE__*/
-      React.createElement("p", { id: "timer-label" }, "Session"), /*#__PURE__*/
-      React.createElement("div", { id: "time-left" }, "25:00")), /*#__PURE__*/
-      React.createElement("audio", { src: "https://cdn.freecodecamp.org/testable-projects-fcc/audio/BeepSound.wav", preload: "auto", id: "beep" }), /*#__PURE__*/
-      React.createElement("span", { id: "start_stop", onClick: this.startCount }, /*#__PURE__*/
-      React.createElement("i", { class: "fa-solid fa-play" }, /*#__PURE__*/
-      React.createElement("i", { class: "fa-solid fa-pause" }))), /*#__PURE__*/
-
-
-      React.createElement("span", { id: "reset", onClick: this.reset }, /*#__PURE__*/
-      React.createElement("i", { class: "fa-solid fa-rotate-right" }))));
-
-
-
-  }}
-
+    return (
+      <div id="timer">
+        <div id="circle" class="well">
+          <p id="timer-label">Session</p>
+          <div id="time-left">25:00</div>
+        </div><audio src="https://cdn.freecodecamp.org/testable-projects-fcc/audio/BeepSound.wav" preload="auto" id="beep"></audio>
+        <span id="start_stop" onClick={this.startCount}>
+          <i class="fa-solid fa-play">
+            <i class="fa-solid fa-pause"></i>
+          </i>
+        </span>
+        <span id="reset" onClick={this.reset}>
+          <i class="fa-solid fa-rotate-right"></i>
+        </span>
+      </div>
+    );
+  }
+}
 
 //Presantational react component, this is the main/root component
 class Presentational extends React.Component {
@@ -181,15 +181,15 @@ class Presentational extends React.Component {
   }
 
   render() {
-    return /*#__PURE__*/(
-      React.createElement("div", { class: "section" }, /*#__PURE__*/
-      React.createElement("p", { id: "title" }, "25 + 5 Clock"), /*#__PURE__*/
-      React.createElement(Settings, null), /*#__PURE__*/
-      React.createElement(Timer, null)));
+    return (
+      <div class="section">
+        <p id="title">25 + 5 Clock</p>
+        <Settings />
+        <Timer />
+      </div>
+    );
+  }
+}
 
 
-  }}
-
-
-
-ReactDOM.render( /*#__PURE__*/React.createElement(Presentational, null), document.getElementById("wrapper"));
+ReactDOM.render(<Presentational />, document.getElementById("wrapper"));

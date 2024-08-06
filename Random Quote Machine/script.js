@@ -1,7 +1,8 @@
-import React from "https://esm.sh/react";
-import ReactDOM from "https://esm.sh/react-dom";
-import { Provider, connect } from "https://esm.sh/react-redux";
-import { createStore, combineReducers, applyMiddleware } from "https://esm.sh/redux";
+
+import React from "https://esm.sh/react"
+import ReactDOM from "https://esm.sh/react-dom"
+import { Provider, connect } from "https://esm.sh/react-redux"
+import { createStore, combineReducers, applyMiddleware } from "https://esm.sh/redux"
 //import thunk from "https://esm.sh/redux-thunk"
 
 // const fetchData = async () => {
@@ -16,11 +17,11 @@ class Presentational extends React.Component {
     super(props);
     this.state = {
       quote: '',
-      author: '' };
-
+      author: ''
+    }
     this.getQuote = this.getQuote.bind(this);
   }
-
+  
   async getQuote() {
     const res = await fetch('https://type.fit/api/quotes');
     const data = await res.json();
@@ -28,37 +29,37 @@ class Presentational extends React.Component {
     //console.log(data[index].author.split(','))
     this.setState({
       quote: data[index].text,
-      author: data[index].author.split(',')[0] === "type.fit" ? '' : data[index].author.split(',')[0] });
-
-
+      author: data[index].author.split(',')[0] === "type.fit" ? '' : data[index].author.split(',')[0]
+    })
+     
   }
-
+  
   render() {
-    return /*#__PURE__*/(
-      React.createElement("div", { id: "quote-box" },
-      window.onload = this.getQuote, /*#__PURE__*/
-      React.createElement("div", { id: "text" }, /*#__PURE__*/
-      React.createElement("i", { class: "fa-solid fa-quote-left", id: "left-quote" }),
-      this.state.quote, /*#__PURE__*/
-      React.createElement("i", { class: "fa-solid fa-quote-right", id: "right-quote" })), /*#__PURE__*/
+    return (
+      <div id="quote-box">
+        {window.onload = this.getQuote}
+        <div id="text">
+          <i class="fa-solid fa-quote-left" id="left-quote"></i>
+           {this.state.quote} 
+          <i class="fa-solid fa-quote-right" id="right-quote"></i>
+        </div>
+        <div id="author">- {this.state.author}</div>
+        <div class="row">
+          <span class="blue">
+            <a id="tweet-quote" target="_blank" href="twitter.com/intent/tweet">
+              <i class="fa-brands fa-x-twitter" id="icon"></i> 
+            </a>
+            <span id="tweet">Tweet this quote</span>
+          </span>
+          <span class="yellow">
+            <button id="new-quote" onClick={this.getQuote}>New Quote</button>
+          </span>
+        </div>
+        
+        
+      </div>
+    )
+  }
+}
 
-      React.createElement("div", { id: "author" }, "- ", this.state.author), /*#__PURE__*/
-      React.createElement("div", { class: "row" }, /*#__PURE__*/
-      React.createElement("span", { class: "blue" }, /*#__PURE__*/
-      React.createElement("a", { id: "tweet-quote", target: "_blank", href: "twitter.com/intent/tweet" }, /*#__PURE__*/
-      React.createElement("i", { class: "fa-brands fa-x-twitter", id: "icon" })), /*#__PURE__*/
-
-      React.createElement("span", { id: "tweet" }, "Tweet this quote")), /*#__PURE__*/
-
-      React.createElement("span", { class: "yellow" }, /*#__PURE__*/
-      React.createElement("button", { id: "new-quote", onClick: this.getQuote }, "New Quote")))));
-
-
-
-
-
-
-  }}
-
-
-ReactDOM.render( /*#__PURE__*/React.createElement(Presentational, null), document.getElementById('wrapper'));
+ReactDOM.render(<Presentational />, document.getElementById('wrapper'))
