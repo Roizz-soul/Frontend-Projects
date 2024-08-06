@@ -1,0 +1,22 @@
+body {
+  background-color: Yellow;
+  text-align: center;
+
+}
+
+
+#container {
+  margin: 30px auto;
+  background-color: white;
+  width: 250px;
+  padding: 20px;
+}
+
+#sprite {
+  width: 15em;
+  height: 15em;
+}
+
+span {
+  margin-right: 5px;
+}
