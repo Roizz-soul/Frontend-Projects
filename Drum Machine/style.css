@@ -1,0 +1,111 @@
+#drum-machine {
+  width: 70%;
+  min-width: 500px;
+  max-width: 600px;
+  min-height: 300px;
+  border: 5px solid black;
+  border-radius: 15px;
+  background-color: #fcfadb;
+  padding: 10px;
+  padding-right: 15px;
+  display: grid;
+  grid-template-columns: auto auto;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+#pads {
+  width: 350px;
+  height: 280px;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.drum-pad {
+  width: 100px;
+  height: 80px;
+  border: none;
+  border-radius: 5px;
+  margin: 4px;
+  margin-top: 8px;
+  box-shadow: 3px 3px 5px grey;
+}
+
+.drum-pad:active {
+  background-color: blue;
+  box-shadow: none;
+}
+
+.active {
+  background-color: blue !important;
+  box-shadow: none !important;
+}
+
+#display {
+  font-family: Orbitron;
+  font-weight: bold;
+  border: 3px solid black;
+  height: 40px;
+  width: 130px;
+  margin: 15px auto;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 0;
+  margin-right: 20px;
+  border-radius: 5px;
+  background-color: cyan;
+}
+
+#panel {
+  padding-left: 15px;
+  padding-top: 30px;
+  width: 150px;
+}
+
+h4 {
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.switch {
+  height: 20px;
+  border: 3px solid black;
+  width: 50px;
+  margin: 0 auto;
+  border-radius: 15px;
+  z-index: 1;
+}
+
+.span {
+  cursor: pointer;
+  display: inline-block;
+  height: 100%;
+  width: 50%;
+}
+
+#span1 {
+  background-color: black;
+  border-radius: 9px 0 0 9px;
+}
+
+#span2 {
+  background-color: blue;
+  border-radius: 0 9px 9px 0;
+}
+
+.on #span1 {
+  background-color: blue;
+  border-radius: 9px 0 0 9px;
+}
+.on #span2 {
+  background-color: black;
+  border-radius: 0 9px 9px 0;
+}
+
+input {
+  margin: 1px 4px;
+}
